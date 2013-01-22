@@ -1,4 +1,4 @@
-package Smoke::Module;
+package SmokedMeat::Smoker;
 # ABSTRACT: 
 
 =head1 SYNOPSIS
@@ -81,8 +81,9 @@ has tap_report => (
 );
 
 method generate_tap_report {
-    $self->_run_tests;
+    my $report = $self->_run_tests;
     $self->tap_reports_generated;
+    return $report;
 };
 
 sub tap_reports_generated {
@@ -131,7 +132,6 @@ method _run_tests {
     elsif ( -f 'Makefile.PL' ) {
         $self->log_debug("Makefile.PL detected");
 
-        use IPC::Run3;
 
         run3 [ $self->perl_exec, 'Makefile.PL' ],
             \undef, sub { $self->log_debug(@_) }, sub { $self->log_debug(@_) };

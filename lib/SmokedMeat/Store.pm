@@ -1,4 +1,4 @@
-package Smoke::Module::Store;
+package SmokedMeat::Store;
 
 use 5.10.0;
 

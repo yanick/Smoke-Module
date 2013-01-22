@@ -1,4 +1,4 @@
-package Smoke::Module::Pinto;
+package SmokedMeat::Pinto;
 
 use 5.10.0;
 
@@ -40,6 +40,8 @@ method _pinto_tarball {
     # has version ? => find that one
     # has not? take the highest version
 
+    $DB::single = 1;
+
     my $package;
     if ( $self->package_version ) {
         $rs = $rs->search({ version => $self->package_version });
@@ -53,7 +55,7 @@ method _pinto_tarball {
         $self->package_version( $package->version );
     }
 
-    return $self->pinto_root . '/' .$package->distribution->native_path;
+    return $self->pinto_root . '/.pinto/authors/id/' .$package->distribution->native_path;
 
 }
 
